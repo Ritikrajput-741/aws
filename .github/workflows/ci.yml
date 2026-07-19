@@ -1,0 +1,27 @@
+name: aws
+
+on:
+  push:
+      branches:
+        - main
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+
+      steps:
+         - name: checkout repo
+           uses: actions/checkout@v4
+
+         - name: ssh use
+           uses: appleboy/ssh-action@v1
+           with:
+             host: ${{secrets.HOST_NAME}}
+             username: ubuntu
+             key: ${{secrets.SECRET_KEY}}
+
+             script: |
+                /home/ubuntu/aws
+                git pull
+                sudo docker down
+                sudo docker compose up -d --build
