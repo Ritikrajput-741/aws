@@ -5,7 +5,7 @@ const app = express();
 
 
 app.get("/", (req, res)=> {
-  res.json("hlo from server with aws")
+  res.json("hlo from server with aws + 🚀")
 })
 
 
